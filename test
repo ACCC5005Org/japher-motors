@@ -1,6 +1,12 @@
 <html>
 
 Salut!!!
+<input type="text" name="name" class="input-field" placeholder="Introduce your name!" required>
+<button type="submit" name="save" value="save" class="submit-btn">Save</button>
+<?php
+
+
+?>
 
 
 </html>
