@@ -59,7 +59,7 @@ a:focus {
     left: 0;
     height: 100vh;
     z-index: 999;
-    background: #009688;
+    background: #867F7D;
     color: #fff;
     transition: all 0.3s;
 }
@@ -70,7 +70,7 @@ a:focus {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #009688;
+    background: #867F7D;
 }
 
 #sidebar ul.components {
