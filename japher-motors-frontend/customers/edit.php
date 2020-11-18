@@ -11,7 +11,7 @@
 
 <body>
     <div id="header-container" class="row">
-        <div id="header" class="col-md-12">Japher Motors</div>
+        <div id="header" class="col-md-12">JAPHER MOTORS</div>
     </div>
     <div id="main-container" class="row">
         <div class="col-md-3" id="menu">

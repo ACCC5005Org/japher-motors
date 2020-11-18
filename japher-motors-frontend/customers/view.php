@@ -7,11 +7,12 @@
     <title>Japher Motors</title>
     <link rel="stylesheet" href="../styles/bootstrap341.min.css">
     <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
     <div id="header-container" class="row">
-        <div id="header" class="col-md-12">Japher Motors</div>
+        <div id="header" class="col-md-12">JAPHER MOTORS</div>
     </div>
     <div id="main-container" class="row">
         <div class="col-md-3" id="menu">
