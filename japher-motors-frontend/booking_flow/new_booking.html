@@ -19,6 +19,7 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 
+
     <!-- CALENDAR DEPENDENCIES -->
 </head>
 
@@ -58,12 +59,51 @@
         </nav>
 
         <!-- Page Content  -->
-        <div id="content">
+        <div class="d-flex justify-content-center" id="content">
 
-            <h2>Japhers Motors</h2>
-            <div>
 
+            <div class="card" style="width: 24rem; height:100%;">
+                <div class="card-body">
+                    <h3 class=titlePosition>Add new booking</h3>
+                    <br>
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Custumer</label>
+                            <input type="text" class="form-control" id="inputCustomerName" placeholder="Enter customer name">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Date/time in</label>
+                            <input type="datetime-local" class="form-control" id="inputCustomerName" placeholder="Enter customer name">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Date/time out</label>
+                            <input type="datetime-local" class="form-control" id="inputCustomerName" placeholder="Enter customer name">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Services</label>
+                            <div class="card" style="width:100%; height:100%;">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <div data-role="listview" id="servicesList">
+                                        </div>
+                                        <br>
+                                        <label for="exampleInputEmail1">Search for services</label>
+                                        <input type="text" class="form-control" id="inputSearchBar" placeholder="Type here...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-around">
+                            <button type="submit" class="btn btn-primary">Create</button>
+                            <button type="submit" class="btn btn-primary">Cancel</button>
+
+                        </div>
+
+                    </form>
+
+                </div>
             </div>
+
         </div>
     </div>
 
@@ -89,6 +129,7 @@
             });
         });
     </script>
+    <script src="main.js"></script>
 </body>
 
 </html>
