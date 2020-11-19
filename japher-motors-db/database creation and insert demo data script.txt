@@ -19,7 +19,7 @@ create table inventory (
 	sparePartId INT AUTO_INCREMENT PRIMARY KEY,
 	sparePartName VARCHAR(255) NOT NULL,
 	carType VARCHAR(255) NOT NULL,
-	quatity FLOAT NOT NULL,
+	quantity INT NOT NULL,
 	price FLOAT NOT NULL
 );
 
@@ -45,7 +45,7 @@ create table bookingSpareParts(
 	bookingSparePartId INT AUTO_INCREMENT PRIMARY KEY,
 	bookingId INT,
 	sparePartId INT,
-	usedQuantity float,
+	usedQuantity INT,
 	FOREIGN KEY (bookingId) REFERENCES bookings(bookingId),
 	FOREIGN KEY (sparePartId) REFERENCES inventory(sparePartId)
 );
