@@ -70,9 +70,9 @@ insert into customers(firstName, lastName, phoneNumber, email) values ('Paul','E
 insert into services (serviceName, carType, price) values ('Oil change', 'sedan' , 500 );
 insert into services (serviceName, carType, price) values ('Transmission change', 'sport' ,3000);
 
-insert into inventory(sparePartName, carType, quatity, price) values('Oil 1L', 'sedan', 250, 50);
-insert into inventory(sparePartName, carType, quatity, price) values('Transmission for Audi A8', 'sport',  12, 1760);
-insert into inventory(sparePartName, carType, quatity, price) values('Transmission for Volkswagen golf', 'sport', 20, 1330);
+insert into inventory(sparePartName, carType, quantity, price) values('Oil 1L', 'sedan', 250, 50);
+insert into inventory(sparePartName, carType, quantity, price) values('Transmission for Audi A8', 'sport',  12, 1760);
+insert into inventory(sparePartName, carType, quantity, price) values('Transmission for Volkswagen golf', 'sport', 20, 1330);
 
 insert into bookings(customerId, datetimeIn, datetimeOut, bookingReference) values (1, now(), now() +1 , 'aa-bb-cc-dd-ee-123');
 
