@@ -104,9 +104,5 @@ function autocomplete(inp, arr) {
 
 $(document).ready(function() {
     var countries = ["Computer Diagnostics", "Lube/oil/filter change", "Radiator Flush & Fill Service", "Transmission Fluid Service", "A/C Recharge & Diagnostic Service", "Timing Belt Replacement", "Tire rotation and balance only", "Battery replacement", "Anti-Lock system diagnosis", "Axle Work Bearings/Seals", "Shock and Strut Replacement", "Starters/Alternators/Heater cores", "Suspension system service", "Alignments", "Anti-Lock system diagnosis", "Fleet service/maintenance", "Imports & Japanese vehicles", "Antique/classic car repair"];
-
     autocomplete(document.getElementById("inputSearchBar"), countries);
-
-
-
 });
