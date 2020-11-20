@@ -1,5 +1,41 @@
 var selectServices = [];
 
+var services = [{
+        title: "Computer Diagnostics",
+        price: 123,
+    }, {
+        title: "Lube/oil/filter change",
+        price: 543,
+    }
+
+    // "Lube/oil/filter change", "Radiator Flush & Fill Service", "Transmission Fluid Service", "A/C Recharge & Diagnostic Service", "Timing Belt Replacement", "Tire rotation and balance only", "Battery replacement", "Anti-Lock system diagnosis", "Axle Work Bearings/Seals", "Shock and Strut Replacement", "Starters/Alternators/Heater cores", "Suspension system service", "Alignments", "Anti-Lock system diagnosis", "Fleet service/maintenance", "Imports & Japanese vehicles", "Antique/classic car repair"
+
+];
+
+function calculateTotal() {
+    var total = 0;
+    for (i = 0; i < selectServices.length; i++) {
+        total = total + selectServices[i].price;
+    }
+    return total;
+}
+
+function onDeleteBtn(item) {
+    for (i = 0; i < selectServices.length; i++) {
+        if (item === selectServices[i].title) {
+            selectServices.splice(i, 1);
+        }
+    }
+
+    $('#servicesList').empty();
+    for (i = 0; i < selectServices.length; i++) {
+        var title = selectServices[i].title;
+        var price = selectServices[i].price;
+        $('#servicesList').append("<div class=\'d-flex justify-content-between\'>" + title + "<strong>£" + price + "</strong><div class='btn btn-primary' onclick=\"onDeleteBtn('" + title + "')\">X</div></div><br>");
+    }
+    $('#total').html(calculateTotal());
+}
+
 function autocomplete(inp, arr) {
     /*the autocomplete function takes two arguments,
     the text field element and an array of possible autocompleted values:*/
@@ -19,23 +55,24 @@ function autocomplete(inp, arr) {
         this.parentNode.appendChild(a);
         /*for each item in the array...*/
         for (i = 0; i < arr.length; i++) {
-            /*check if the item starts with the same letters as the text field value:*/
-            if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-                /*create a DIV element for each matching element:*/
+
+            var title = arr[i].title;
+            var price = arr[i].price;
+            if (val !== '' && title.substr(0, val.length).toUpperCase() == val.toUpperCase()) {
                 b = document.createElement("DIV");
-                /*make the matching letters bold:*/
-                b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-                b.innerHTML += arr[i].substr(val.length);
-                /*insert a input field that will hold the current array item's value:*/
-                b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
-                /*execute a function when someone clicks on the item value (DIV element):*/
+
+                b.innerHTML = "<strong>" + title.substr(0, val.length) + "</strong>";
+                b.innerHTML += title.substr(val.length);
+
+                b.innerHTML += "<input type='hidden' value='" + i + "'>";
+
                 b.addEventListener("click", function(e) {
-                    /*insert the value for the autocomplete text field:*/
-                    var value = this.getElementsByTagName("input")[0].value;
-                    selectServices.push(value);
-                    $('#servicesList').append('<div>' + value + '</div>');
-                    /*close the list of autocompleted values,
-                    (or any other open lists of autocompleted values:*/
+                    var index = this.getElementsByTagName("input")[0].value;
+                    selectServices.push(services[index]);
+                    $('#servicesList').append("<div class=\'d-flex justify-content-between\'>" + services[index].title + "<strong>£" + services[index].price + "</strong><div class='btn btn-primary' onclick=\"onDeleteBtn('" + title + "')\">X</div></div><br>");
+
+                    $('#total').html(calculateTotal());
+                    inp.value = '';
                     closeAllLists();
                 });
                 a.appendChild(b);
@@ -103,6 +140,5 @@ function autocomplete(inp, arr) {
 }
 
 $(document).ready(function() {
-    var countries = ["Computer Diagnostics", "Lube/oil/filter change", "Radiator Flush & Fill Service", "Transmission Fluid Service", "A/C Recharge & Diagnostic Service", "Timing Belt Replacement", "Tire rotation and balance only", "Battery replacement", "Anti-Lock system diagnosis", "Axle Work Bearings/Seals", "Shock and Strut Replacement", "Starters/Alternators/Heater cores", "Suspension system service", "Alignments", "Anti-Lock system diagnosis", "Fleet service/maintenance", "Imports & Japanese vehicles", "Antique/classic car repair"];
-    autocomplete(document.getElementById("inputSearchBar"), countries);
+    autocomplete(document.getElementById("inputSearchBar"), services);
 });
