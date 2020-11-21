@@ -1,3 +1,13 @@
+<?php include('backend-functions.php') ?>
+<?php
+
+$userName = $_POST["name"];
+
+$timeIn = date("Y-m-d\TH:i:s", strtotime($_POST['timeIn']));
+$timeOut = date("Y-m-d\TH:i:s", strtotime($_POST['timeOut']));
+$bookingNumber = generateRandomString(10);
+
+createBooking($userName, $timeIn, $timeOut, $bookingNumber); ?>
 <!DOCTYPE html>
 <html>
 
@@ -18,8 +28,6 @@
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-
-    <!-- CALENDAR DEPENDENCIES -->
 </head>
 
 <body>
@@ -36,7 +44,7 @@
                     <a href="#">Customers</a>
                 </li>
                 <li>
-                    <a href="calendar_view.html">Bookings</a>
+                    <a href="calendar_view.php">Bookings</a>
                 </li>
                 <li>
                     <a href="#">Inventory</a>
@@ -60,13 +68,14 @@
         <!-- Page Content  -->
         <div class="d-flex justify-content-center" id="content">
 
-
             <div class="card" style="width: 24rem; height:100%;">
                 <div class="card-body">
                     <h3 class=titlePosition>Booking confirmation</h3>
                     <br>
                     <h5 class="card-title">Customer</h5>
-                    <div>John Smith</div>
+                    <div>
+                        <?php echo $_POST["name"]; ?>
+                    </div>
                     <br>
                     <h5 class="card-title">Date/time in</h5>
                     <div>20/11/2020, 11:50</div>
@@ -75,7 +84,9 @@
                     <div>20/11/2020, 14:30</div>
                     <br>
                     <h5 class="card-title">Booking reference</h5>
-                    <div>aa-bb-cc-dd-ee-123</div>
+                    <div>
+                        <?php echo $bookingNumber; ?>
+                    </div>
                     <br>
 
                     <a href="#" class="btn btn-primary">Print</a>

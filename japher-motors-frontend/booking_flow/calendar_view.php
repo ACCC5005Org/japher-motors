@@ -1,3 +1,4 @@
+<?php include('backend-functions.php') ?>
 <!DOCTYPE html>
 <html>
 
@@ -28,6 +29,20 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 
     <!-- CALENDAR DEPENDENCIES -->
+    <script>
+        window.cal_events = [];
+        <?php foreach ($bookings as $value) : ?>
+            var item = {
+                title: '<?php echo $value['firstName']?> <?php echo $value['lastName']?>',
+                start: '<?php echo $value['datetimeIn']?>',
+                end: '<?php echo $value['datetimeOut']?>',
+                url: 'http://biancaantoci.com/',
+                className: 'success'
+            };
+            window.cal_events.push(item);
+        <?php endforeach; ?>
+    </script>   
+
     <link href='assets/css/fullcalendar.css' rel='stylesheet' />
     <link href='assets/css/fullcalendar.print.css' rel='stylesheet' media='print' />
     <script src='assets/js/jquery-1.10.2.js' type="text/javascript"></script>
@@ -35,7 +50,6 @@
     <script src='assets/js/fullcalendar.js' type="text/javascript"></script>
 
     <script src='js/calendar_logic.js' type="text/javascript"></script>
-
 </head>
 
 <body>
@@ -52,7 +66,7 @@
                     <a href="#">Customers</a>
                 </li>
                 <li>
-                    <a href="calendar_view.html">Bookings</a>
+                    <a href="calendar_view.php">Bookings</a>
                 </li>
                 <li>
                     <a href="#">Inventory</a>
@@ -75,20 +89,20 @@
 
         <!-- Page Content  -->
         <div id="content">
-
             <div>
+
+                
+
                 <div class="d-flex justify-content-between">
                     <div class="form-group calendar-search ">
                         <input type="text" class="form-control" id="inputCustomerName" placeholder="Search for a booking...">
                     </div>
-                    <button type="submit" class="btn btn-primary calendar-cta " onclick="location.href='new_booking.html'">Create new booking</button>
+                    <button type="submit" class="btn btn-primary calendar-cta " onclick="location.href='new_booking.php'">Create new booking</button>
                 </div>
             </div>
             <div>
                 <div id='wrap'>
-
                     <div id='calendar'></div>
-
                     <div style='clear:both'></div>
                 </div>
             </div>

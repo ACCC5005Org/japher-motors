@@ -36,7 +36,7 @@
                     <a href="#">Customers</a>
                 </li>
                 <li>
-                    <a href="calendar_view.html">Bookings</a>
+                    <a href="calendar_view.php">Bookings</a>
                 </li>
                 <li>
                     <a href="#">Inventory</a>
@@ -59,24 +59,22 @@
 
         <!-- Page Content  -->
         <div class="d-flex justify-content-center" id="content">
-
-
             <div class="card" style="width: 30rem; height:100%;">
                 <div class="card-body">
                     <h3 class=titlePosition>Add new booking</h3>
                     <br>
-                    <div>
+                    <form action="booking_confirmation.php" method="post">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Customer</label>
-                            <input type="text" class="form-control" id="inputCustomerName" placeholder="Enter customer name">
+                            <input name="name" type="text" class="form-control" id="inputCustomerName" placeholder="Enter customer name">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Date/time in</label>
-                            <input type="datetime-local" class="form-control" id="inputCustomerName" placeholder="Enter customer name">
+                            <input name="timeIn" type="datetime-local" class="form-control" id="inputCustomerName" placeholder="Enter customer name">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Date/time out</label>
-                            <input type="datetime-local" class="form-control" id="inputCustomerName" placeholder="Enter customer name">
+                            <input name="timeOut" type="datetime-local" class="form-control" id="inputCustomerName" placeholder="Enter customer name">
                         </div>
                         <div class="form-group">
                             <div class="d-flex justify-content-between">
@@ -96,11 +94,11 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-around">
-                            <button type="submit" class="btn btn-primary" onclick="onCreateBtn()">Create</button>
+                            <button type="submit" class="btn btn-primary" type="submit">Create</button>
                             <button type="submit" class="btn btn-primary" onclick="onCancelBtn()">Cancel</button>
                         </div>
 
-                    </div>
+                    </form>
 
                 </div>
             </div>
