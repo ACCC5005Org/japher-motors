@@ -6,9 +6,35 @@ var services = [{
     }, {
         title: "Lube/oil/filter change",
         price: 543,
+    },
+    {
+        title: "Radiator Flush & Fill Service",
+        price: 345,
+    },
+    {
+        title: "Transmission Fluid Service",
+        price: 235,
+    },
+    {
+        title: "A/C Recharge & Diagnostic Service",
+        price: 156,
+    },
+    {
+        title: "Timing Belt Replacement",
+        price: 389,
+    },
+    {
+        title: "Battery replacement",
+        price: 80,
+    },
+    {
+        title: "Suspension system service",
+        price: 267,
+    },
+    {
+        title: "Alignments",
+        price: 97,
     }
-
-    // "Lube/oil/filter change", "Radiator Flush & Fill Service", "Transmission Fluid Service", "A/C Recharge & Diagnostic Service", "Timing Belt Replacement", "Tire rotation and balance only", "Battery replacement", "Anti-Lock system diagnosis", "Axle Work Bearings/Seals", "Shock and Strut Replacement", "Starters/Alternators/Heater cores", "Suspension system service", "Alignments", "Anti-Lock system diagnosis", "Fleet service/maintenance", "Imports & Japanese vehicles", "Antique/classic car repair"
 
 ];
 
