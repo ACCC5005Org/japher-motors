@@ -20,7 +20,7 @@
                     <a class="nav-link" href="view.php">Customers</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Bookings</a>
+                    <a class="nav-link" href="../booking_flow/calendar_view.php">Bookings</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Inventory</a>

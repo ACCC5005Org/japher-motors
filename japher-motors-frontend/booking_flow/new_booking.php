@@ -33,7 +33,7 @@
 
             <ul class="list-unstyled components">
                 <li>
-                    <a href="#">Customers</a>
+                    <a href="../customers/view.php">Customers</a>
                 </li>
                 <li>
                     <a href="calendar_view.php">Bookings</a>
