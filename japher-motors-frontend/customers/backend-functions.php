@@ -6,6 +6,7 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "japhermotorsdb";
+$errors   = array();
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -20,10 +21,19 @@ if (isset($_SESSION['searchCustomerValue']) || isset($_POST['searchCustomerInput
         $_SESSION['searchCustomerValue'] = $searchedCustomer;
     }
     $customers = searchCustomer($searchedCustomer);
-
 } else {
     $customers = getCustomers();
 }
+
+if (isset($_POST['createCustomer'])) {
+    $firstName = $_POST['firstName'];
+    $lastName = $_POST['lastName'];
+    $phoneNumber = $_POST['phoneNumber'];
+    $email = $_POST['email'];
+
+    createCustomer($firstName, $lastName, $phoneNumber, $email);
+}
+
 
 
 function searchCustomer($searchedCustomer)
@@ -66,4 +76,47 @@ function getCustomers()
     }
 
     return $customers;
+}
+
+function createCustomer($firstName, $lastName, $phoneNumber, $email)
+{
+    global $conn, $errors;
+
+    if (empty($firstName)) {
+        array_push($errors, "First name is required!");
+    }
+
+    if (empty($lastName)) {
+        array_push($errors, "Last name is required!");
+    }
+
+    if (!empty($phoneNumber) && !is_numeric($phoneNumber) && strlen($phoneNumber) != 10) {
+        array_push($errors, "Invalid phone number. Please insert only digits. Phone number must have 10 digits!");
+    }
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        array_push($errors, "Missing or invalid email. Please insert a valid email!");
+    }
+
+    if (count($errors) == 0) {
+        $customerName = $firstName . " " . $lastName;
+        $query = "INSERT INTO customers (customerName, phoneNumber, email) VALUES('$customerName', '$phoneNumber', '$email')";
+        if ($conn->query($query) === TRUE) {
+            header('location: view.php');
+        } else {
+            array_push($errors, "Customer was not created. Please contact administrator!");
+        }
+    }
+}
+
+function display_error()
+{
+    global $errors;
+    if (count($errors) > 0) {
+        echo '<div class="alert alert-danger">';
+        foreach ($errors as $error) {
+            echo $error . '<br>';
+        }
+        echo '</div>';
+    }
 }

@@ -34,8 +34,42 @@
             </ul>
         </div>
         <div id="content-container" class="col-md-9">
-            <div class="col-md-2">
-                TODO: Create customer
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Add new customer</h3>
+                            <br>
+                            <form method="post">
+                                <?php echo display_error(); ?>
+                                <div class="form-group">
+                                    <label>First name</label>
+                                    <input name="firstName" type="text" class="form-control" id="customerFirstName" placeholder="Enter first name..." value="<?php echo isset($_POST["firstName"]) ? $_POST["firstName"] : ''; ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label>Last name</label>
+                                    <input name="lastName" type="text" class="form-control" id="customerLastName" placeholder="Enter last name..." value="<?php echo isset($_POST["lastName"]) ? $_POST["lastName"] : ''; ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone number</label>
+                                    <input name="phoneNumber" type="text" class="form-control" id="customerPhoneNumber" placeholder="Enter phone number..." value="<?php echo isset($_POST["phoneNumber"]) ? $_POST["phoneNumber"] : ''; ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input name="email" type="text" class="form-control" id="customerEmail" placeholder="Enter email..." value="<?php echo isset($_POST["email"]) ? $_POST["email"] : ''; ?>">
+                                </div>
+                                <div class="d-flex justify-content-around">
+                                    <button name="createCustomer" type="submit" class="btn btn-primary">Create</button>
+                                    <a class="btn btn-default" href="view.php">Cancel</a>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
             </div>
         </div>
     </div>
