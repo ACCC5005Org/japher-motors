@@ -41,8 +41,8 @@
                 </div>
                 <div class="col-md-7"></div>
                 <div class="col-md-3">
-                    <form class="form-inline d-flex justify-content-center md-form form-sm mt-0">
-                        <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search customer name" aria-label="Search">
+                    <form name="searchCustomer" method="POST" class="form-inline d-flex justify-content-center md-form form-sm mt-0">
+                        <input id="searchCustomerInput" name="searchCustomerInput" class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search customer name" aria-label="Search" value="<?php echo (isset($searchedCustomer))?$searchedCustomer:'';?>">
                     </form>
                 </div>
             </div>
@@ -62,5 +62,17 @@
             </div>
         </div>
     </div>
+
+    <script>
+        var input = document.getElementById("searchCustomerInput");
+        input.addEventListener("keyup", function(event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                document.searchCustomer.submit();
+            }
+        });
+    </script>
+
 </body>
+
 </html>

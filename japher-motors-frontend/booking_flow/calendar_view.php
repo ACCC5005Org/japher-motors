@@ -16,6 +16,15 @@
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 
+    <link href='assets/css/fullcalendar.css' rel='stylesheet' />
+    <link href='assets/css/fullcalendar.print.css' rel='stylesheet' media='print' />
+    
+    <script src='assets/js/jquery-1.10.2.js' type="text/javascript"></script>
+    <script src='assets/js/jquery-ui.custom.min.js' type="text/javascript"></script>
+    <script src='assets/js/fullcalendar.js' type="text/javascript"></script>
+
+    <script src='js/calendar_logic.js' type="text/javascript"></script>
+
     <!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
@@ -33,7 +42,7 @@
         window.cal_events = [];
         <?php foreach ($bookings as $value) : ?>
             var item = {
-                title: '<?php echo $value['firstName']?> <?php echo $value['lastName']?>',
+                title: '<?php echo $value['customerName']?>',
                 start: '<?php echo $value['datetimeIn']?>',
                 end: '<?php echo $value['datetimeOut']?>',
                 url: 'http://biancaantoci.com/',
@@ -43,13 +52,7 @@
         <?php endforeach; ?>
     </script>   
 
-    <link href='assets/css/fullcalendar.css' rel='stylesheet' />
-    <link href='assets/css/fullcalendar.print.css' rel='stylesheet' media='print' />
-    <script src='assets/js/jquery-1.10.2.js' type="text/javascript"></script>
-    <script src='assets/js/jquery-ui.custom.min.js' type="text/javascript"></script>
-    <script src='assets/js/fullcalendar.js' type="text/javascript"></script>
-
-    <script src='js/calendar_logic.js' type="text/javascript"></script>
+   
 </head>
 
 <body>
