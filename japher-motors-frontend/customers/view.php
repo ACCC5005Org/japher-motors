@@ -50,7 +50,7 @@
                 <div class="col-md-12">
                     <?php foreach ($customers as $value) : ?>
                         <div id="row-container" class="row">
-                            <div class="col-md-10">
+                            <div class="col-md-9">
                                 <p>
                                     <strong><a href="visits.php?customerId=<?php echo $value['customerId']; ?>"><?php echo $value["customerName"]; ?></a></strong>
                                 </p>
@@ -59,7 +59,18 @@
                                 echo isset($lastVisit) ? '<p>Last visit on ' . $lastVisit . '</p>' : '';
                                 ?>
                             </div>
-                            <div class="col-md-2"> <a class="btn btn-primary" href="edit.php?customerId=<?php echo $value['customerId']; ?>">Edit</a></div>
+                            <div class="col-md-3">
+                                <div class="row">
+                                    <div class="col-md-6"></div>
+                                    <div class="col-md-2">
+                                        <a class="btn btn-primary" href="edit.php?customerId=<?php echo $value['customerId']; ?>">Edit</a>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <a class="btn btn-danger" href="?deletedCustomerId=<?php echo $value["customerId"]; ?>" onclick="deleteCustomerConfirmation();">Delete</a>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                </div>
+                            </div>
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -69,13 +80,20 @@
     </div>
 
     <script>
-        var input = document.getElementById("searchCustomerInput");
-        input.addEventListener("keyup", function(event) {
+        var searchCustomerInput = document.getElementById("searchCustomerInput");
+        searchCustomerInput.addEventListener("keyup", function(event) {
             if (event.keyCode === 13) {
                 event.preventDefault();
                 document.searchCustomer.submit();
             }
         });
+
+        function deleteCustomerConfirmation() {
+            var conf = confirm('Are you sure want to delete this customer?');
+            if (conf) {
+                window.location = anchor.attr("href");
+            }
+        }
     </script>
 
 </body>

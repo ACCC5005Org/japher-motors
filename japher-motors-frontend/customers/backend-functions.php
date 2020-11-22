@@ -15,7 +15,6 @@ if (isset($_SESSION['searchCustomerValue'])) {
 }
 
 if (isset($_SESSION['searchCustomerValue']) || isset($_POST['searchCustomerInput'])) {
-
     if (isset($_POST['searchCustomerInput'])) {
         $searchedCustomer = $_POST['searchCustomerInput'];
         $_SESSION['searchCustomerValue'] = $searchedCustomer;
@@ -29,7 +28,6 @@ if (isset($_POST['createCustomer'])) {
     $customerName = $_POST['customerName'];
     $phoneNumber = $_POST['phoneNumber'];
     $email = $_POST['email'];
-
     createCustomer($customerName, $phoneNumber, $email);
 }
 
@@ -37,6 +35,11 @@ if (isset($_GET['customerId'])) {
     $customerId =  $_GET['customerId'];
     $customer = getCustomerById($customerId);
     $visits = getVisitsByCustomerId($customerId);
+}
+
+if (isset($_GET['deletedCustomerId'])) {
+    $deletedCustomerId =  $_GET['deletedCustomerId'];
+    deleteCustomer($deletedCustomerId);
 }
 
 
@@ -61,7 +64,7 @@ function searchCustomer($searchedCustomer)
     }
 
     $searchedCustomer = $searchedCustomer;
-    $query = "SELECT customerId, customerName FROM customers WHERE customerName like '%$searchedCustomer%'";
+    $query = "SELECT customerId, customerName FROM customers WHERE customerName like '%$searchedCustomer%' AND isDeleted = 0";
     $result = $conn->query($query);
 
     if ($result->num_rows > 0) {
@@ -82,7 +85,7 @@ function getCustomers()
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $query = "SELECT customerId, customerName FROM customers";
+    $query = "SELECT customerId, customerName FROM customers WHERE isDeleted = 0";
     $result = $conn->query($query);
 
     if ($result->num_rows > 0) {
@@ -90,7 +93,6 @@ function getCustomers()
             array_push($customers, $row);
         }
     }
-
     return $customers;
 }
 
@@ -106,7 +108,7 @@ function createCustomer($customerName, $phoneNumber, $email)
         array_push($errors, "Customer name is required!");
     }
 
-    if (!empty($phoneNumber) && !is_numeric($phoneNumber) && strlen($phoneNumber) != 10) {
+    if(!(preg_match("/^\d+\.?\d*$/",$phoneNumber) && strlen($phoneNumber) ==10)){
         array_push($errors, "Invalid phone number. Please insert only digits. Phone number must have 10 digits!");
     }
 
@@ -154,7 +156,6 @@ function editCustomer($customerId, $customerName, $phoneNumber, $email)
         if ($conn->query($query) === TRUE) {
             header('location: view.php');
         } else {
-            array_push($errors, "Error: " . $query . "<br>" . $conn->error);
             array_push($errors, "Customer was not created. Please contact administrator!");
         }
     }
@@ -176,7 +177,8 @@ function getCustomerById($customerId)
     return $customer;
 }
 
-function getLastVisit($customerId){
+function getLastVisit($customerId)
+{
     global $conn;
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
@@ -191,7 +193,8 @@ function getLastVisit($customerId){
     return $result["dateTimeIn"];
 }
 
-function getVisitsByCustomerId($customerId){
+function getVisitsByCustomerId($customerId)
+{
     global $conn;
     $visits =  array();
 
@@ -208,6 +211,22 @@ function getVisitsByCustomerId($customerId){
         }
     }
     return $visits;
+}
+
+function deleteCustomer($deletedCustomerId)
+{
+    global $conn;
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $query = "UPDATE customers SET isDeleted = 1 WHERE customerId = '$deletedCustomerId'";
+    if ($conn->query($query) === TRUE) {
+        header('location: view.php');
+    } else {
+        array_push($errors, "Customer was not deleted. Please contact administrator!");
+    }
 }
 
 function display_error()

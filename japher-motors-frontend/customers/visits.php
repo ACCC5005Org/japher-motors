@@ -37,37 +37,33 @@
         <div id="content-container" class="col-md-9">
             <div class="row">
                 <div class="col-md-12">
-                    <a href="view.php">Back</a>
+                    <a class="btn btn-default" href="view.php">Back</a>
                     <h3>Visits</h3>
                 </div>
             </div>
-            <?php if (isset($visits)) { ?>
-                <div class="row">
-                    <div class="col-md-12">
-                        <table class="table">
-                            <thead>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Booking reference</th>
+                                <th scope="col">Date/Time In</th>
+                                <th scope="col">Date/Time Out</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($visits as $value) : ?>
                                 <tr>
-                                    <th scope="col">Booking reference</th>
-                                    <th scope="col">Date/Time In</th>
-                                    <th scope="col">Date/Time Out</th>
+                                    <td><?php echo $value["bookingReference"]; ?></td>
+                                    <td><?php echo $value["dateTimeIn"]; ?></td>
+                                    <td><?php echo $value["dateTimeOut"]; ?></td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($visits as $value) : ?>
-                                    <tr>
-                                        <td><?php echo $value["bookingReference"]; ?></td>
-                                        <td><?php echo $value["dateTimeIn"]; ?></td>
-                                        <td><?php echo $value["dateTimeOut"]; ?></td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
 
-                    </div>
                 </div>
-            <?php } else { ?>
-                This customer has no visits.
-            <?php } ?>
+            </div>
         </div>
     </div>
 </body>
