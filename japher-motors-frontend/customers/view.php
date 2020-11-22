@@ -42,7 +42,7 @@
                 <div class="col-md-7"></div>
                 <div class="col-md-3">
                     <form name="searchCustomer" method="POST" class="form-inline d-flex justify-content-center md-form form-sm mt-0">
-                        <input id="searchCustomerInput" name="searchCustomerInput" class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search customer name" aria-label="Search" value="<?php echo (isset($searchedCustomer))?$searchedCustomer:'';?>">
+                        <input id="searchCustomerInput" name="searchCustomerInput" class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search customer name" aria-label="Search" value="<?php echo (isset($searchedCustomer)) ? $searchedCustomer : ''; ?>">
                     </form>
                 </div>
             </div>
@@ -50,7 +50,15 @@
                 <div class="col-md-12">
                     <?php foreach ($customers as $value) : ?>
                         <div id="row-container" class="row">
-                            <div class="col-md-10"><?php echo $value["customerName"]; ?> </div>
+                            <div class="col-md-10">
+                                <p>
+                                    <strong><a href="visits.php?customerId=<?php echo $value['customerId']; ?>"><?php echo $value["customerName"]; ?></a></strong>
+                                </p>
+                                <?php
+                                $lastVisit = getLastVisit($value["customerId"]);
+                                echo isset($lastVisit) ? '<p>Last visit on ' . $lastVisit . '</p>' : '';
+                                ?>
+                            </div>
                             <div class="col-md-2"> <a class="btn btn-primary" href="edit.php?customerId=<?php echo $value['customerId']; ?>">Edit</a></div>
                         </div>
                     <?php endforeach; ?>

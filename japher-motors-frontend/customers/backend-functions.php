@@ -36,6 +36,7 @@ if (isset($_POST['createCustomer'])) {
 if (isset($_GET['customerId'])) {
     $customerId =  $_GET['customerId'];
     $customer = getCustomerById($customerId);
+    $visits = getVisitsByCustomerId($customerId);
 }
 
 
@@ -149,7 +150,7 @@ function editCustomer($customerId, $customerName, $phoneNumber, $email)
                       phoneNumber = '$phoneNumber',
                       email = '$email'
                  WHERE customerId = $customerId";
-                 
+
         if ($conn->query($query) === TRUE) {
             header('location: view.php');
         } else {
@@ -173,6 +174,40 @@ function getCustomerById($customerId)
         $customer = $result->fetch_assoc();
     }
     return $customer;
+}
+
+function getLastVisit($customerId){
+    global $conn;
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $query = "SELECT max(dateTimeIn) as dateTimeIn FROM bookings WHERE customerId = '$customerId'";
+    $result = $conn->query($query);
+
+    if ($result->num_rows == 1) {
+        $result = $result->fetch_assoc();
+    }
+    return $result["dateTimeIn"];
+}
+
+function getVisitsByCustomerId($customerId){
+    global $conn;
+    $visits =  array();
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $query = "SELECT bookingReference, dateTimeIn, dateTimeOut FROM bookings WHERE customerId = '$customerId'";
+    $result = $conn->query($query);
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            array_push($visits, $row);
+        }
+    }
+    return $visits;
 }
 
 function display_error()
