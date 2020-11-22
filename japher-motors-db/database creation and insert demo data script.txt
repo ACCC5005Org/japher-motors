@@ -2,8 +2,7 @@ create database japhermotorsdb;
 
 create table customers (
 	customerId INT AUTO_INCREMENT PRIMARY KEY,
-	firstName VARCHAR(255) NOT NULL,
-	lastName VARCHAR(255) NOT NULL,
+	customerName VARCHAR(255) NOT NULL,
 	phoneNumber VARCHAR(255) NULL,
 	email VARCHAR(255) NOT NULL
 );
@@ -60,11 +59,11 @@ create table payments (
 	FOREIGN KEY (bookingId) REFERENCES bookings(bookingId)
 );
 
-insert into customers(firstName, lastName, phoneNumber, email) values ('John', 'Smith', '0799345213','john.smith@gmail.com');
-insert into customers(firstName, lastName, phoneNumber, email) values ('Olivia', 'Jacob', '0792245211', 'olivia.jacob@gmail.com');
-insert into customers(firstName, lastName, phoneNumber, email) values ('Emily', 'Wilson', '0792332210', 'emily.wilson@gmail.com');
-insert into customers(firstName, lastName, phoneNumber, email) values ('Jacob', 'Hail', '0784559902', 'jacob.hail@gmail.com');
-insert into customers(firstName, lastName, phoneNumber, email) values ('Paul','Evans', '0745622219', 'paul.evans@gmail.com');
+insert into customers(customerName, phoneNumber, email) values ('John Smith', '0799345213','john.smith@gmail.com');
+insert into customers(customerName, phoneNumber, email) values ('Olivia Jacob', '0792245211', 'olivia.jacob@gmail.com');
+insert into customers(customerName, phoneNumber, email) values ('Emily Wilson', '0792332210', 'emily.wilson@gmail.com');
+insert into customers(customerName, phoneNumber, email) values ('Jacob Hail', '0784559902', 'jacob.hail@gmail.com');
+insert into customers(customerName, phoneNumber, email) values ('Paul Evans', '0745622219', 'paul.evans@gmail.com');
 
 
 insert into services (serviceName, carType, price) values ('Oil change', 'sedan' , 500 );

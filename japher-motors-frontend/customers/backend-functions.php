@@ -17,7 +17,7 @@ function getCustomers()
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    $query = "SELECT customerId, firstName, lastName FROM customers";
+    $query = "SELECT customerId, customerName FROM customers";
     $result = $conn->query($query);
 
     if ($result->num_rows > 0) {

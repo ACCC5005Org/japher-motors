@@ -50,7 +50,7 @@
                 <div class="col-md-12">
                     <?php foreach ($customers as $value) : ?>
                         <div id="row-container" class="row">
-                            <div class="col-md-10"><?php echo $value["firstName"]; ?> <?php echo $value["lastName"]; ?></div>
+                            <div class="col-md-10"><?php echo $value["customerName"]; ?> </div>
                             <div class="col-md-2"> <a class="btn btn-primary" href="edit.php">Edit</a></div>
                         </div>
                         <!-- <tr>
