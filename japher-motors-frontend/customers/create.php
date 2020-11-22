@@ -44,12 +44,8 @@
                             <form method="post">
                                 <?php echo display_error(); ?>
                                 <div class="form-group">
-                                    <label>First name</label>
-                                    <input name="firstName" type="text" class="form-control" id="customerFirstName" placeholder="Enter first name..." value="<?php echo isset($_POST["firstName"]) ? $_POST["firstName"] : ''; ?>">
-                                </div>
-                                <div class="form-group">
-                                    <label>Last name</label>
-                                    <input name="lastName" type="text" class="form-control" id="customerLastName" placeholder="Enter last name..." value="<?php echo isset($_POST["lastName"]) ? $_POST["lastName"] : ''; ?>">
+                                    <label>Customer name</label>
+                                    <input name="customerName" type="text" class="form-control" id="customerName" placeholder="Enter name..." value="<?php echo isset($_POST["customerName"]) ? $_POST["customerName"] : ''; ?>">
                                 </div>
                                 <div class="form-group">
                                     <label>Phone number</label>

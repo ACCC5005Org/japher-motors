@@ -51,11 +51,8 @@
                     <?php foreach ($customers as $value) : ?>
                         <div id="row-container" class="row">
                             <div class="col-md-10"><?php echo $value["customerName"]; ?> </div>
-                            <div class="col-md-2"> <a class="btn btn-primary" href="edit.php">Edit</a></div>
+                            <div class="col-md-2"> <a class="btn btn-primary" href="edit.php?customerId=<?php echo $value['customerId']; ?>">Edit</a></div>
                         </div>
-                        <!-- <tr>
-                        <td><?php echo $key; ?></td>
-                    </tr> -->
                     <?php endforeach; ?>
                 </div>
 

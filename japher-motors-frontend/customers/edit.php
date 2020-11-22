@@ -34,8 +34,38 @@
             </ul>
         </div>
         <div id="content-container" class="col-md-9">
-            <div class="col-md-2">
-                TODO: Edit customer
+        <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Edit customer</h3>
+                            <br>
+                            <form method="post">
+                                <?php echo display_error(); ?>
+                                <div class="form-group">
+                                    <label>Customer name</label>
+                                    <input name="customerName" type="text" class="form-control" id="customerName" placeholder="Enter name..." value="<?php echo isset($_POST["customerName"]) ? $_POST["customerName"] : (isset($customer) && isset($customer["customerName"]) ?  $customer["customerName"] : '') ; ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone number</label>
+                                    <input name="phoneNumber" type="text" class="form-control" id="customerPhoneNumber" placeholder="Enter phone number..." value="<?php echo isset($_POST["phoneNumber"]) ? $_POST["phoneNumber"] : (isset($customer) && isset($customer["phoneNumber"]) ?  $customer["phoneNumber"] : '') ; ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input name="email" type="text" class="form-control" id="customerEmail" placeholder="Enter email..." value="<?php echo isset($_POST["email"]) ? $_POST["email"] : (isset($customer) && isset($customer["email"]) ?  $customer["email"] : '') ; ?>">
+                                </div>
+                                <div class="d-flex justify-content-around">
+                                    <button name="editCustomer" type="submit" class="btn btn-primary">Save</button>
+                                    <a class="btn btn-default" href="view.php">Cancel</a>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
             </div>
         </div>
     </div>

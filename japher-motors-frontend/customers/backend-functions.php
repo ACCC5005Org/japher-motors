@@ -26,14 +26,28 @@ if (isset($_SESSION['searchCustomerValue']) || isset($_POST['searchCustomerInput
 }
 
 if (isset($_POST['createCustomer'])) {
-    $firstName = $_POST['firstName'];
-    $lastName = $_POST['lastName'];
+    $customerName = $_POST['customerName'];
     $phoneNumber = $_POST['phoneNumber'];
     $email = $_POST['email'];
 
-    createCustomer($firstName, $lastName, $phoneNumber, $email);
+    createCustomer($customerName, $phoneNumber, $email);
 }
 
+if (isset($_GET['customerId'])) {
+    $customerId =  $_GET['customerId'];
+    $customer = getCustomerById($customerId);
+}
+
+
+if (isset($_POST['editCustomer'])) {
+    $customerName = $_POST['customerName'];
+    $phoneNumber = $_POST['phoneNumber'];
+    $email = $_POST['email'];
+
+    if (isset($customerId)) {
+        editCustomer($customerId, $customerName, $phoneNumber, $email);
+    }
+}
 
 
 function searchCustomer($searchedCustomer)
@@ -66,6 +80,7 @@ function getCustomers()
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
+
     $query = "SELECT customerId, customerName FROM customers";
     $result = $conn->query($query);
 
@@ -78,16 +93,16 @@ function getCustomers()
     return $customers;
 }
 
-function createCustomer($firstName, $lastName, $phoneNumber, $email)
+function createCustomer($customerName, $phoneNumber, $email)
 {
     global $conn, $errors;
 
-    if (empty($firstName)) {
-        array_push($errors, "First name is required!");
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
     }
 
-    if (empty($lastName)) {
-        array_push($errors, "Last name is required!");
+    if (empty($customerName)) {
+        array_push($errors, "Customer name is required!");
     }
 
     if (!empty($phoneNumber) && !is_numeric($phoneNumber) && strlen($phoneNumber) != 10) {
@@ -99,7 +114,6 @@ function createCustomer($firstName, $lastName, $phoneNumber, $email)
     }
 
     if (count($errors) == 0) {
-        $customerName = $firstName . " " . $lastName;
         $query = "INSERT INTO customers (customerName, phoneNumber, email) VALUES('$customerName', '$phoneNumber', '$email')";
         if ($conn->query($query) === TRUE) {
             header('location: view.php');
@@ -107,6 +121,58 @@ function createCustomer($firstName, $lastName, $phoneNumber, $email)
             array_push($errors, "Customer was not created. Please contact administrator!");
         }
     }
+}
+
+function editCustomer($customerId, $customerName, $phoneNumber, $email)
+{
+    global $conn, $errors;
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    if (empty($customerName)) {
+        array_push($errors, "Customer name is required!");
+    }
+
+    if (!empty($phoneNumber) && !is_numeric($phoneNumber) && strlen($phoneNumber) != 10) {
+        array_push($errors, "Invalid phone number. Please insert only digits. Phone number must have 10 digits!");
+    }
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        array_push($errors, "Missing or invalid email. Please insert a valid email!");
+    }
+
+    if (count($errors) == 0) {
+        $query = "UPDATE customers
+                  SET customerName = '$customerName',
+                      phoneNumber = '$phoneNumber',
+                      email = '$email'
+                 WHERE customerId = $customerId";
+                 
+        if ($conn->query($query) === TRUE) {
+            header('location: view.php');
+        } else {
+            array_push($errors, "Error: " . $query . "<br>" . $conn->error);
+            array_push($errors, "Customer was not created. Please contact administrator!");
+        }
+    }
+}
+
+function getCustomerById($customerId)
+{
+    global $conn;
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $query = "SELECT customerName, phoneNumber, email FROM customers WHERE customerId = '$customerId'";
+    $result = $conn->query($query);
+
+    if ($result->num_rows == 1) {
+        $customer = $result->fetch_assoc();
+    }
+    return $customer;
 }
 
 function display_error()
