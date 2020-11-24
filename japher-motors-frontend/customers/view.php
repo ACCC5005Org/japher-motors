@@ -68,7 +68,6 @@
                                     </div>
                                     <div class="col-md-2" id="<?php echo $value['customerId'] ?>">
                                         <button class="btn btn-danger deleteBtn">Delete</button>
-                                        <!-- <a class="btn btn-danger" href="?deletedCustomerId=<?php echo $value["customerId"]; ?>" onclick="javascript:deleteCustomerConfirmation($(this));return false;">Delete</a> -->
                                     </div>
                                     <div class="col-md-2"></div>
                                 </div>
