@@ -45,7 +45,7 @@
                     <a href="#">Payments</a>
                 </li>
                 <li>
-                    <a href="#">Services</a>
+                    <a href="servicesmenu.php">Services</a>
                 </li>
 
             </ul>
@@ -63,22 +63,20 @@
 
             <div class="card" style="width: 24rem; height:100%;">
                 <div class="card-body">
-                    <h3 class=titlePosition>Booking confirmation</h3>
+                    <h3 class=titlePosition>Add service</h3>
                     <br>
-                    <h5 class="card-title">Customer</h5>
-                    <div>Jhon Smith</div>
+                    <h5 class="card-title">Add new service</h5>
+                    <div><input type="text" name="service name" ></div>
                     <br>
-                    <h5 class="card-title">Date/time in</h5>
-                    <div>Jhon Smith</div>
+                    <h5 class="card-title">Car type</h5>
+                    <div><input type="text" name="car type" ></div>
                     <br>
-                    <h5 class="card-title">Date/time out</h5>
-                    <div>Jhon Smith</div>
+                    <h5 class="card-title">Price</h5>
+                    <div><input type="text" name="price" ></div>
                     <br>
-                    <h5 class="card-title">Booking reference</h5>
-                    <div>Jhon Smith</div>
+                    <a href="addservice.php" class="btn btn-primary">Create</a>
+                    <a href="servicesmenu.php" class="btn btn-primary">Cancel</a>
                     <br>
-
-                    <a href="#" class="btn btn-primary">Print</a>
                 </div>
             </div>
 
