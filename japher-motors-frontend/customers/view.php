@@ -5,8 +5,10 @@
 
 <head>
     <title>Japher Motors</title>
-    <link rel="stylesheet" href="../styles/bootstrap341.min.css">
-    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="./styles/bootstrap341.min.css">
+    <link rel="stylesheet" href="./styles/main.css">
+    <script src="./scripts/jquery171.min.js"></script>
+    <script src="./scripts/view.js"></script>
 </head>
 
 <body>
@@ -64,8 +66,9 @@
                                     <div class="col-md-2">
                                         <a class="btn btn-primary" href="edit.php?customerId=<?php echo $value['customerId']; ?>">Edit</a>
                                     </div>
-                                    <div class="col-md-2">
-                                        <a class="btn btn-danger" href="?deletedCustomerId=<?php echo $value["customerId"]; ?>" onclick="deleteCustomerConfirmation();">Delete</a>
+                                    <div class="col-md-2" id="<?php echo $value['customerId'] ?>">
+                                        <button class="btn btn-danger deleteBtn">Delete</button>
+                                        <!-- <a class="btn btn-danger" href="?deletedCustomerId=<?php echo $value["customerId"]; ?>" onclick="javascript:deleteCustomerConfirmation($(this));return false;">Delete</a> -->
                                     </div>
                                     <div class="col-md-2"></div>
                                 </div>
@@ -77,24 +80,6 @@
             </div>
         </div>
     </div>
-
-    <script>
-        var searchCustomerInput = document.getElementById("searchCustomerInput");
-        searchCustomerInput.addEventListener("keyup", function(event) {
-            if (event.keyCode === 13) {
-                event.preventDefault();
-                document.searchCustomer.submit();
-            }
-        });
-
-        function deleteCustomerConfirmation() {
-            var conf = confirm('Are you sure want to delete this customer?');
-            if (conf) {
-                window.location = anchor.attr("href");
-            }
-        }
-    </script>
-
 </body>
 
 </html>

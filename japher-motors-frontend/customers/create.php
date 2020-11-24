@@ -5,8 +5,8 @@
 
 <head>
     <title>Japher Motors</title>
-    <link rel="stylesheet" href="../styles/bootstrap341.min.css">
-    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="./styles/bootstrap341.min.css">
+    <link rel="stylesheet" href="./styles/main.css">
 </head>
 
 <body>
