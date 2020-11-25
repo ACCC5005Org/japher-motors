@@ -1,6 +1,7 @@
 var selectServices = [];
 
 var services = window.cal_services;
+var customers = window.cal_customers;
 
 function calculateTotal() {
     var total = 0;
@@ -58,11 +59,15 @@ function autocomplete(inp, arr) {
 
                 b.addEventListener("click", function(e) {
                     var index = this.getElementsByTagName("input")[0].value;
-                    selectServices.push(services[index]);
-                    $('#servicesList').append("<div class=\'d-flex justify-content-between\'>" + services[index].title + "<strong>£" + services[index].price + "</strong><div class='btn btn-primary' onclick=\"onDeleteBtn('" + title + "')\">X</div></div><br>");
-
-                    $('#total').html(calculateTotal());
-                    inp.value = '';
+                    if (inp.id == "inputSearchBar") {
+                        selectServices.push(services[index]);
+                        $('#servicesList').append("<div class=\'d-flex justify-content-between\'>" + services[index].title + "<strong>£" + services[index].price + "</strong><div class='btn btn-primary' onclick=\"onDeleteBtn('" + title + "')\">X</div></div><br>");
+                        $('#total').html(calculateTotal());
+                        inp.value = '';
+                    } else {
+                        inp.value = customers[index].title
+                        $('#customerIdField').val(customers[index].id)
+                    }
                     closeAllLists();
                 });
                 a.appendChild(b);
@@ -131,4 +136,5 @@ function autocomplete(inp, arr) {
 
 $(document).ready(function() {
     autocomplete(document.getElementById("inputSearchBar"), services);
+    autocomplete(document.getElementById("inputSearchBarCustomerName"), cal_customers);
 });

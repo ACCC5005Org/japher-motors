@@ -66,7 +66,9 @@
                     <form action="booking_confirmation.php" method="post">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Customer</label>
-                            <input name="name" type="text" class="form-control" id="inputCustomerName" placeholder="Enter customer name">
+                            <div>
+                                <input name="name" type="text" class="form-control" id="inputSearchBarCustomerName" placeholder="Type here customer name">
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Date/time in</label>
@@ -94,6 +96,7 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-around">
+                            <input id="customerIdField" name="customerId" type="hidden" >
                             <button type="submit" class="btn btn-primary" type="submit">Create</button>
                             <button type="button" class="btn btn-primary" onclick="window.location.href='calendar_view.php'">Cancel</button>
                         </div>
@@ -130,12 +133,22 @@
     </script>
     <script>
         window.cal_services = [];
+        window.cal_customers = [];
+
         <?php foreach ($services as $value) : ?>
             var item = {
                 title: '<?php echo $value['serviceName'] ?>',
                 price: parseInt('<?php echo $value['price'] ?>')
             };
             window.cal_services.push(item);
+        <?php endforeach; ?>
+
+        <?php foreach ($customers as $value) : ?>
+            var item = {
+                id: '<?php echo $value['customerId'] ?>',
+                title: '<?php echo $value['customerName'] ?>'
+            };
+            window.cal_customers.push(item);
         <?php endforeach; ?>
     </script>
     <script src="js/autocomplete_logic.js"></script>

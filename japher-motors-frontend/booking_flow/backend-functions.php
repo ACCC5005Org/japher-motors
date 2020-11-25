@@ -9,6 +9,27 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
 $bookings = getBookings();
 $services = getServices();
+$customers = getCustomers();
+
+function getCustomers()
+{
+    global $conn;
+    $customers = array();
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    } else {
+        $query = "SELECT * FROM `customers`";
+        $result = $conn->query($query);
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                array_push($customers, $row);
+            }
+        }
+    }
+    return $customers;
+}
 
 function getServices()
 {
@@ -27,8 +48,6 @@ function getServices()
             }
         }
     }
-
-
     return $services;
 }
 
@@ -54,14 +73,14 @@ function getBookings()
     return $bookings;
 }
 
-function createBooking($name, $timeIn, $timeOut, $bookingNumber)
+function createBooking($name, $timeIn, $timeOut, $bookingNumber, $customerId)
 {
     global $conn;
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $query = "insert into bookings(customerId, datetimeIn, datetimeOut, bookingReference) values (1, '$timeIn', '$timeOut' , '$bookingNumber')";
+    $query = "insert into bookings(customerId, datetimeIn, datetimeOut, bookingReference) values ('$customerId', '$timeIn', '$timeOut' , '$bookingNumber')";
 
     $conn->query($query);
     return "DONE";

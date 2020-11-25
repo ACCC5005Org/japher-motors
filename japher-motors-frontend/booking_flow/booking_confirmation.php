@@ -2,12 +2,13 @@
 <?php
 
 $userName = $_POST["name"];
+$customerId = $_POST["customerId"];
 
 $timeIn = date("Y-m-d\TH:i:s", strtotime($_POST['timeIn']));
 $timeOut = date("Y-m-d\TH:i:s", strtotime($_POST['timeOut']));
 $bookingNumber = generateRandomString(10);
 
-createBooking($userName, $timeIn, $timeOut, $bookingNumber); ?>
+createBooking($userName, $timeIn, $timeOut, $bookingNumber, $customerId); ?>
 <!DOCTYPE html>
 <html>
 
