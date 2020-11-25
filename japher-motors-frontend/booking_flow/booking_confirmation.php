@@ -89,8 +89,8 @@ createBooking($userName, $timeIn, $timeOut, $bookingNumber, $customerId); ?>
                         <?php echo $bookingNumber; ?>
                     </div>
                     <br>
-
-                    <a href="#" class="btn btn-primary">Print</a>
+                    <a href="calendar_view.php" class="btn btn-primary">Print</a>
+                    <a href="calendar_view.php" class="btn btn-primary">Back to Calendar</a>
                 </div>
             </div>
 

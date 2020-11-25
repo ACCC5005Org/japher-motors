@@ -93,16 +93,11 @@
         <!-- Page Content  -->
         <div id="content">
             <div>
-
-
-
                 <div class="d-flex justify-content-between">
-                    <div class="form-group calendar-search ">
-                        <input type="text" class="form-control" id="inputCustomerName" placeholder="Search for a booking...">
-                    </div>
                     <button type="submit" class="btn btn-primary calendar-cta " onclick="location.href='new_booking.php'">Create new booking</button>
                 </div>
             </div>
+            <br>
             <div>
                 <div id='wrap'>
                     <div id='calendar'></div>
