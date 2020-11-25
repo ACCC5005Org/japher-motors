@@ -13,6 +13,7 @@
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
     <!--Bootstrap JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
         integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
@@ -60,15 +61,20 @@
         </nav>
     </div>
     <!-- Page Content  -->
-    <a type="button" name="additem" class="btn btn-primary" style="margin-left:35%; margin-top:70px;"
+    <a type="button" name="additem" class="btn btn-primary" style="margin-left:28%; margin-top:70px;"
         data-toggle="modal" data-target="#exampleModal">Add Items</a>
+    <input type="text" placeholder="Search" name="search" id="search" class="form-control"
+        style="width:400px; margin-left:54%; margin-top:-38px;" />
     <?php
     $conn= mysqli_connect("localhost","root","","japhermotorsdb");
     $result=$conn->query("SELECT * FROM inventory") or die($conn->error);
+    $query1="SELECT * FROM inventory ORDER BY sparePartId DESC";
+    $result1=mysqli_query($conn, $query1);
     ?>
-    <table class="table" style="margin-left:13%; margin-top:10%; width:87%;">
+    <table class="table" name="datatable" id="datatable" style="margin-left:28%; margin-top:10%; width:47%;">
         <thead>
             <tr>
+                <th scope="col">Part Id</th>
                 <th scope="col">Part Name</th>
                 <th scope="col">Car Type</th>
                 <th scope="col">Quantity</th>
@@ -77,16 +83,19 @@
             </tr>
         </thead>
         <?php while ($row = $result->fetch_assoc()):?>
-        <tr>
-            <td><?php echo $row['sparePartName'];?></td>
-            <td><?php echo $row['carType'];?></td>
-            <td><?php echo $row['quantity'];?></td>
-            <td><?php echo $row['price'];?></td>
-            <td>
-                <button type="button" class="btn btn-success editbtn">Edit</button>
-                <a href="process.php?delete=<?php echo $row['sparePartId'];?>" class="btn btn-danger">Delete</a>
-            </td>
-        </tr>
+        <tbody>
+            <tr id="tr1" name="tr1">
+                <td><?php echo $row['sparePartId'];?></td>
+                <td><?php echo $row['sparePartName'];?></td>
+                <td><?php echo $row['carType'];?></td>
+                <td><?php echo $row['quantity'];?></td>
+                <td><?php echo $row['price'];?></td>
+                <td>
+                    <button type="button" class="btn btn-success editbtn">Edit</button>
+                    <a href="process.php?delete=<?php echo $row['sparePartId'];?>" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        </tbody>
         <?php endwhile; ?>
 
     </table>
@@ -99,8 +108,6 @@ function pre_r($array){
     echo '</pre>';
 }
 ?>
-
-
     <!-- ADD POP UP FORM -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
@@ -124,7 +131,8 @@ function pre_r($array){
                                     <th>Add or Remove</th>
                                 </tr>
                                 <tr>
-                                    <td><input class="corm-control" type="text" name="sparePartName[]" required=""></td>
+                                    <td><input class="corm-control" type="text" name="sparePartName[]" required="">
+                                    </td>
                                     <td><input class="corm-control" type=" text" name="carType[]" required=""></td>
                                     <td><input class="corm-control" type="text" name="quantity[]" required=""></td>
                                     <td><input class="corm-control" type="text" name="price[]" required=""></td>
@@ -170,6 +178,8 @@ function pre_r($array){
                                     <th>Price</th>
                                 </tr>
                                 <tr>
+                                    <input class="corm-control" id="sparePartId" type="hidden" name="sparePartId"
+                                        required="">
                                     <td><input class="corm-control" id="sparePartName" type="text" name="sparePartName"
                                             required=""></td>
                                     <td><input class="corm-control" id="carType" type=" text" name="carType"
@@ -201,6 +211,10 @@ function pre_r($array){
         <div class="row">
         </div>
     </div>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+
+
 
     <script type="text/javascript">
     $(document).ready(function() {
@@ -248,13 +262,37 @@ function pre_r($array){
                 return $(this).text();
             }).get();
             console.log(data);
-            $('#sparePartName').val(data[0]);
-            $('#carType').val(data[1]);
-            $('#quantity').val(data[2]);
-            $('#price').val(data[3]);
+            $('#sparePartId').val(data[0]);
+            $('#sparePartName').val(data[1]);
+            $('#carType').val(data[2]);
+            $('#quantity').val(data[3]);
+            $('#price').val(data[4]);
 
 
         });
+    });
+    </script>
+    <script>
+    $(document).ready(function() {
+        $('#search').keyup(function() {
+            search_table($(this).val());
+        });
+
+        function search_table(value) {
+            $('#datatable #tr1').each(function() {
+                var found = 'false';
+                $(this).each(function() {
+                    if ($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0) {
+                        found = 'true';
+                    }
+                });
+                if (found == 'true') {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        }
     });
     </script>
 </body>

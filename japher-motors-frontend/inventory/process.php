@@ -5,7 +5,7 @@ $sparePartName='';
 $carType='';
 $quantity='';
 $price='';
-$update=false;
+
 
 
 
@@ -33,7 +33,7 @@ if(isset($_POST['update'])){
     $quantity=$_POST['quantity'];
     $price=$_POST['price'];
 
-    $query="UPDATE inventory SET sparePartName='$sparePartName', carType='$carType', quantity='$quantity', price='$price' where sparePartName='$sparePartName' ";
+    $query="UPDATE inventory SET sparePartName='$sparePartName', carType='$carType', quantity='$quantity', price='$price' where sparePartId='$sparePartId' ";
     $query_run= mysqli_query($conn, $query);
     if($query_run){
     
