@@ -18,7 +18,7 @@
 
     <link href='assets/css/fullcalendar.css' rel='stylesheet' />
     <link href='assets/css/fullcalendar.print.css' rel='stylesheet' media='print' />
-    
+
     <script src='assets/js/jquery-1.10.2.js' type="text/javascript"></script>
     <script src='assets/js/jquery-ui.custom.min.js' type="text/javascript"></script>
     <script src='assets/js/fullcalendar.js' type="text/javascript"></script>
@@ -42,17 +42,17 @@
         window.cal_events = [];
         <?php foreach ($bookings as $value) : ?>
             var item = {
-                title: '<?php echo $value['customerName']?>',
-                start: '<?php echo $value['datetimeIn']?>',
-                end: '<?php echo $value['datetimeOut']?>',
+                title: '<?php echo $value['customerName'] ?>',
+                start: '<?php echo $value['datetimeIn'] ?>',
+                end: '<?php echo $value['datetimeOut'] ?>',
                 url: 'http://biancaantoci.com/',
                 className: 'success'
             };
             window.cal_events.push(item);
         <?php endforeach; ?>
-    </script>   
+    </script>
 
-   
+
 </head>
 
 <body>
@@ -94,7 +94,7 @@
         <div id="content">
             <div>
 
-                
+
 
                 <div class="d-flex justify-content-between">
                     <div class="form-group calendar-search ">
@@ -125,6 +125,14 @@
             });
         });
     </script>
+    <link href='assets/css/fullcalendar.css' rel='stylesheet' />
+    <link href='assets/css/fullcalendar.print.css' rel='stylesheet' media='print' />
+    <script src='assets/js/jquery-1.10.2.js' type="text/javascript"></script>
+    <script src='assets/js/jquery-ui.custom.min.js' type="text/javascript"></script>
+    <script src='assets/js/fullcalendar.js' type="text/javascript"></script>
+
+    <script src='js/calendar_logic.js' type="text/javascript"></script>
+
 </body>
 
 </html>
