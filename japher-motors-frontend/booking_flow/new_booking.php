@@ -1,3 +1,4 @@
+<?php include('backend-functions.php') ?>
 <!DOCTYPE html>
 <html>
 
@@ -126,6 +127,16 @@
                 $('a[aria-expanded=true]').attr('aria-expanded', 'false');
             });
         });
+    </script>
+    <script>
+        window.cal_services = [];
+        <?php foreach ($services as $value) : ?>
+            var item = {
+                title: '<?php echo $value['serviceName'] ?>',
+                price: parseInt('<?php echo $value['price'] ?>')
+            };
+            window.cal_services.push(item);
+        <?php endforeach; ?>
     </script>
     <script src="js/autocomplete_logic.js"></script>
 </body>

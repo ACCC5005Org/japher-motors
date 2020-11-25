@@ -1,42 +1,6 @@
 var selectServices = [];
 
-var services = [{
-        title: "Computer Diagnostics",
-        price: 123,
-    }, {
-        title: "Lube/oil/filter change",
-        price: 543,
-    },
-    {
-        title: "Radiator Flush & Fill Service",
-        price: 345,
-    },
-    {
-        title: "Transmission Fluid Service",
-        price: 235,
-    },
-    {
-        title: "A/C Recharge & Diagnostic Service",
-        price: 156,
-    },
-    {
-        title: "Timing Belt Replacement",
-        price: 389,
-    },
-    {
-        title: "Battery replacement",
-        price: 80,
-    },
-    {
-        title: "Suspension system service",
-        price: 267,
-    },
-    {
-        title: "Alignments",
-        price: 97,
-    }
-
-];
+var services = window.cal_services;
 
 function calculateTotal() {
     var total = 0;
