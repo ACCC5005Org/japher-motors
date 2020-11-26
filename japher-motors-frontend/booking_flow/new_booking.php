@@ -39,7 +39,7 @@
                     <a href="calendar_view.php">Bookings</a>
                 </li>
                 <li>
-                    <a href="../inventory/inventory.php">Inventory</a>
+                    <a href="#">Inventory</a>
                 </li>
                 <li>
                     <a href="#">Payments</a>
