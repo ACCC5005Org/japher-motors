@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-
-<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,23 +48,37 @@
 
             </ul>
 
-            <ul class="list-unstyled CTAs">
-                <li>
-                    <a href="" class="download">Kamen</a>
-                </li>
-            </ul>
         </nav>
 
         <!-- Page Content  -->
         <div class="d-flex justify-content-center" id="content">
 
-
             <div class="card" style="width: 100%; height:100%;">
                 <div class="card-body">
                     <h3 class=titlePosition>Services</h3>
                     <br>
-                    <a href="addservice.php" class="btn btn-primary">Add service</a>
+                    
                         <h5>
+                            <input type="text" placeholder="Search" name="search" id="search" class="form-control"
+                            style="width:400px; margin-left:64%; margin-top:-38px;" />
+
+                            <!-- Include bootstrap & jQuery -->
+                            <link rel="stylesheet" href="bootstrap.css" />
+                            <script src="jquery-3.3.1.min.js"></script>
+                            <script src="bootstrap.js"></script>
+
+                            <?php
+                            if (isset($_POST["get_data"]))
+                            {
+                                $id = $_POST["id"];
+                                $connection = mysqli_connect("localhost", "root", "", "japhermotorsdb");
+                                $sql = "SELECT * FROM services";
+                                $result = mysqli_query($connection, $sql);
+                                $row = mysqli_fetch_object($result);
+                                echo json_encode($row);
+                                exit();
+                            }
+                            ?>
                             <?php
                                 // Connecting with database and executing query
                                 $connection = mysqli_connect("localhost", "root", "", "japhermotorsdb");
@@ -75,31 +86,27 @@
                                 $result = mysqli_query($connection, $sql);
                             ?>
                                     
-                            <!-- Include bootstrap & jQuery -->
-                            <link rel="stylesheet" href="bootstrap.css" />
-                            <script src="jquery-3.3.1.min.js"></script>
-                            <script src="bootstrap.js"></script>
+                            
 
                             <!-- Creating table heading -->
                             <div class="container">
-                                <table class="table">
+                                <table class="table" style="margin-left:0%; margin-top:10%; width:100%;">
+                                <button class = "btn btn-primary" data-toggle = "modal" data-target="#AddserviceModal">
+                                            Add service
+                                        </button>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Phone</th>
-                                        <th>Actions</th>
+                                        <th>Services</th>
+                                        <th>Action</th>
                                     </tr>
 
                                     <!-- Display dynamic records from database -->
                                     <?php while ($row = mysqli_fetch_object($result)) { ?>
                                         <tr>
                                             <td><?php echo $row->serviceName; ?></td>
-                                            <td><?php echo $row->carType; ?></td>
-                                            <td><?php echo $row->price; ?></td>
-                                            <!--Button to display details -->
+                                    <!--Button to edit service -->
                                     <td>
-                                        <button class = "btn btn-primary" onclick="loadData(this.getAttribute('data-id'));" data-id="<?php echo $row->serviceName; ?>">
-                                            Details
+                                        <button class = "btn btn-primary" data-toggle = "modal" data-target="#EditModal">
+                                            Edit
                                         </button>
                                     </td>
                                         </tr>
@@ -107,63 +114,81 @@
                                 </table>
                             </div>
 
-                            <script>
-                                function loadData(id) {
-                                    console.log(id);
-                                    $.ajax({
-                                        url: "index.php",
-                                        method: "POST",
-                                        data: {get_data: 1, id: id},
-                                        success: function (response) {
-                                            response = JSON.parse(response);
-                                            console.log(response);
-                                            var html = "";
-
-                                            // Displaying city
-                                            html += "<div class='row'>";
-                                                html += "<div class='col-md-6'>City</div>";
-                                                html += "<div class='col-md-6'>" + response.city + "</div>";
-                                            html += "</div>";
-
-                                            // And now assign this HTML layout in pop-up body
-                                            $("#modal-body").html(html);
-
-                                            $("#myModal").modal();
-                                        }
-                                    });
-                                }
-                            </script>
-
-                            <!-- Modal -->
-                            <div class = "modal fade" id = "myModal" tabindex = "-1" role = "dialog" aria-hidden = "true">
+                            <!--Edit service Modal -->
+                            <div class = "modal fade" id = "EditModal" tabindex = "-1" role = "dialog" aria-hidden = "true">
                             
-                            <div class = "modal-dialog">
-                                <div class = "modal-content">
-                                    
-                                    <div class = "modal-header">
-                                        <h4 class = "modal-title">
-                                        Service Detail
-                                        </h4>
+                                <div class = "modal-dialog">
+                                    <div class = "modal-content">
+                                        
+                                        <div class = "modal-header">
+                                            <h4 class = "modal-title">
+                                            Edit Service
+                                            </h4>
 
-                                        <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
-                                        ×
-                                        </button>
-                                    </div>
-                                    
-                                    <div id = "modal-body">
-                                        Press ESC button to exit.
-                                    </div>
-                                    
-                                    <div class = "modal-footer">
-                                        <button type = "button" class = "btn btn-default" data-dismiss = "modal">
-                                        OK
-                                        </button>
-                                    </div>
-                                    
-                                </div><!-- /.modal-content -->
-                            </div><!-- /.modal-dialog -->
-                            
+                                            <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
+                                            ×
+                                            </button>
+                                        </div>
+                                        
+                                        <div id = "modal-body">
+                                        Content
+                                        </div>
+                                        
+                                        <div class = "modal-footer">
+                                            <button type = "button" class = "btn btn-default" data-dismiss = "modal">
+                                            Submit
+                                            </button>
+                                        </div>
+                                        
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal-dialog -->
                             </div><!-- /.modal -->
+
+                            <!-- Add service Model -->
+                            <div class = "modal fade" id = "AddserviceModal" tabindex = "-1" role = "dialog" aria-hidden = "true">
+                            
+                                <div class = "modal-dialog">
+                                    <div class = "modal-content">
+                                        
+                                        <div class = "modal-header">
+                                            <h4 class = "modal-title">
+                                            Add Service
+                                            </h4>
+
+                                            <!-- <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
+                                            ×
+                                            </button> -->
+                                        </div>
+                                        
+                                        <div id = "modal-body">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Add new service</h5>
+                                                <div><input type="text" name="service name" ></div>
+                                                <br>
+                                                <h5 class="card-title">Car type</h5>
+                                                <div><input type="text" name="car type" ></div>
+                                                <br>
+                                                <h5 class="card-title">Price</h5>
+                                                <div><input type="text" name="price" ></div>
+                                                <br>
+                                                <a href="#" class="btn btn-primary">Create</a>
+                                                <a href="servicesmenu.php" class="btn btn-primary">Cancel</a>
+                                                <br>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        
+                                        <!-- <div class = "modal-footer">
+                                            <button type = "button" class = "btn btn-default" data-dismiss = "modal">
+                                            OK
+                                            </button>
+                                        </div> -->
+                                        
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal-dialog -->
+                            </div><!-- /.modal -->
+
                         </h5>
                 </div>
             </div>
@@ -180,6 +205,34 @@
     <!-- jQuery Custom Scroller CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 
+    
+    <script>
+        function loadData(id) {
+            console.log(id);
+            $.ajax({
+                url: "servicesmenu.php",
+                method: "POST",
+                data: {get_data: 1, id: id},
+                success: function (response) {
+                    response = JSON.parse(response);
+                    console.log(response);
+                    var html = "";
+
+                    // Displaying city
+                    html += "<div class='row'>";
+                        html += "<div class='col-md-6'>City</div>";
+                        html += "<div class='col-md-6'>" + response.city + "</div>";
+                    html += "</div>";
+
+                    // And now assign this HTML layout in pop-up body
+                    $("#modal-body").html(html);
+
+                    $("#myModal").modal();
+                }
+            });
+        }
+    </script>
+
     <script type="text/javascript">
         $(document).ready(function() {
             $("#sidebar").mCustomScrollbar({
@@ -194,4 +247,3 @@
         });
     </script>
 </body>
-</html>
