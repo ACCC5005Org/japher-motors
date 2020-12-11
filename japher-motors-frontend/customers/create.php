@@ -23,13 +23,13 @@
                     <a class="nav-link" href="../booking_flow/calendar_view.php">Bookings</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Inventory</a>
+                    <a class="nav-link" href="../inventory/inventory.php">Inventory</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Payments</a>
+                    <a class="nav-link" href="../payments/Payments.html">Payments</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Services</a>
+                    <a class="nav-link" href="../services/servicesmenu.php">Services</a>
                 </li>
             </ul>
         </div>

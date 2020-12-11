@@ -66,10 +66,10 @@
                     <a href="../inventory/inventory.php">Inventory</a>
                 </li>
                 <li>
-                    <a href="#">Payments</a>
+                    <a href="../payments/Payments.html">Payments</a>
                 </li>
                 <li>
-                    <a href="#">Services</a>
+                    <a href="../services/servicesmenu.php">Services</a>
                 </li>
 
             </ul>

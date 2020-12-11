@@ -42,7 +42,7 @@ createBooking($userName, $timeIn, $timeOut, $bookingNumber, $customerId); ?>
 
             <ul class="list-unstyled components">
                 <li>
-                    <a href="#">Customers</a>
+                    <a href="../customers/view.php">Customers</a>
                 </li>
                 <li>
                     <a href="calendar_view.php">Bookings</a>
@@ -51,10 +51,10 @@ createBooking($userName, $timeIn, $timeOut, $bookingNumber, $customerId); ?>
                     <a href="../inventory/inventory.php">Inventory</a>
                 </li>
                 <li>
-                    <a href="#">Payments</a>
+                    <a href="../payments/Payments.html">Payments</a>
                 </li>
                 <li>
-                    <a href="#">Services</a>
+                    <a href="../services/servicesmenu.php">Services</a>
                 </li>
 
             </ul>

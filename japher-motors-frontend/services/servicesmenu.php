@@ -31,16 +31,16 @@
 
             <ul class="list-unstyled components">
                 <li>
-                    <a href="#">Customers</a>
+                    <a href="../customers/view.php">Customers</a>
                 </li>
                 <li>
-                    <a href="#">Bookings</a>
+                    <a href="../booking_flow/calendar_view.php">Bookings</a>
                 </li>
                 <li>
-                    <a href="#">Inventory</a>
+                    <a href="../inventory/inventory.php">Inventory</a>
                 </li>
                 <li>
-                    <a href="#">Payments</a>
+                    <a href="../payments/Payments.html">Payments</a>
                 </li>
                 <li>
                     <a href="servicesmenu.php">Services</a>
